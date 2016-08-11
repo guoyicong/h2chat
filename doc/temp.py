@@ -17,6 +17,7 @@ class MyH2Handler(socketserver.StreamRequestHandler):
                 
     def request_received(self, headers, stream_id, conn):
         headers = collections.OrderedDict(headers)
+        temp = headers[':method']
       
         response_header = [
             (':status', '200'),
@@ -26,7 +27,7 @@ class MyH2Handler(socketserver.StreamRequestHandler):
         conn.send_headers(stream_id, response_header)
         self.request.sendall(conn.data_to_send())
 
-        data = b'still works!'
+        data = temp.encode('utf-8')
         conn.send_data(stream_id, data, end_stream = True)
         self.request.sendall(conn.data_to_send())
 
