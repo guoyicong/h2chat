@@ -1,0 +1,6 @@
+bottle==0.12.9
+h2==2.4.0
+hpack==2.3.0
+hyper==0.6.2
+hyperframe==3.2.0
+pep8==1.7.0
