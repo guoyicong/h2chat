@@ -1,4 +1,5 @@
-h2chat
+**h2chat**
+==========
 
 What is it?
 -----------
@@ -10,15 +11,17 @@ The program supports a simple command line interface (console) for clients. Star
 
 The interface supports the following commands:
 
-login client_name
-send receiver_name message_content
-end
+- login client_name
+
+- send receiver_name message_content
+
+- end
 
 Installation
 ------------
 Use the following command to install the package:
 
-python setup.py install
+    python setup.py install
 
 Licensing
 ---------
