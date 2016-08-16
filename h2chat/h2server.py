@@ -13,7 +13,7 @@ import h2.events
 
 
 log = logging.getLogger(__name__)
-
+log.propagate = False
 
 AUTHORITY = u'localhost:6001'
 
@@ -32,6 +32,7 @@ class ThreadingTCPServer(socketserver.ThreadingMixIn,
                          socketserver.TCPServer):
 
     allow_reuse_address = True
+
 
 
 class MyH2Handler(socketserver.StreamRequestHandler):
@@ -187,8 +188,14 @@ class MyH2Handler(socketserver.StreamRequestHandler):
                 if isinstance(event, h2.events.StreamEnded):
                     self.server.shutdown()
 
-       
-logging.basicConfig(level=logging.INFO)
-host, port = '', 6001
-httpd = ThreadingTCPServer((host, port), MyH2Handler)
-httpd.serve_forever()
+
+def new_server():
+
+    logging.basicConfig(level=logging.INFO)
+    host, port = '', 6001
+    httpd = ThreadingTCPServer((host, port), MyH2Handler)
+    httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    new_server()
